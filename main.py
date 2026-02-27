@@ -3,11 +3,14 @@ import joblib
 import librosa
 import sounddevice as sd 
 import subprocess
+import config 
+
 
 model = joblib.load('my_model.pkl')
 
-DURATION = 1
-SAMPLE_RATE = 22050 
+DURATION = config.DURATION
+SAMPLE_RATE = config.SAMPLE_RATE 
+PATH = config.PATH
 
 def get_features(mfccs): 
     mean = np.mean(mfccs, axis=1)
@@ -36,7 +39,7 @@ try:
         prediction = model.predict(features)[0]
 
         if prediction == 'TARGET':
-            subprocess.run([r'C:\Program Files\Google\Chrome\Application\chrome.exe'])
+            subprocess.run([PATH])
 
 except KeyboardInterrupt:
     pass
