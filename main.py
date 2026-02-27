@@ -2,9 +2,9 @@ import numpy as np
 import joblib 
 import librosa
 import sounddevice as sd 
+import subprocess
 
 model = joblib.load('my_model.pkl')
-print(f"Ожидается признаков: {model.n_features_in_}")
 
 DURATION = 1
 SAMPLE_RATE = 22050 
@@ -19,6 +19,7 @@ def get_features(mfccs):
 
 
 try:
+    print('Идет распознавание целевого звука')
     while True:
         recording = sd.rec(DURATION * SAMPLE_RATE,
                    samplerate=SAMPLE_RATE, 
@@ -33,9 +34,9 @@ try:
         features = get_features(mfccs).reshape(1, -1)
 
         prediction = model.predict(features)[0]
-        probabilities = model.predict_proba(features)[0]
 
-        print(prediction, probabilities[1])
+        if prediction == 'TARGET':
+            subprocess.run([r'C:\Program Files\Google\Chrome\Application\chrome.exe'])
 
 except KeyboardInterrupt:
     pass
