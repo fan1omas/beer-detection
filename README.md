@@ -22,7 +22,7 @@ git clone https://https://github.com/fan1omas/beer-detection
 cd dino-play
 ```
 
- 2. Загрузите необходимые библиотеки и заполните condig-файл
+ 2. Загрузите необходимые библиотеки и заполните config-файл
 ```bash
 pip install -r requirements.txt
 ```
