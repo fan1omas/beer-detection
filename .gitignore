@@ -2,4 +2,4 @@ venv311/
 data/
 data/
 my_model.pkl 
-
+__pycache__/
